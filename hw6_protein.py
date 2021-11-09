@@ -146,7 +146,13 @@ Parameters: list of strs
 Returns: dict mapping strs to ints
 '''
 def aminoAcidDictionary(aaList):
-    return
+    x={}
+    for i in aaList:
+        if i not in x:
+            x[i]=1
+        else:
+            x[i]+=1
+    return x
 
 
 '''
@@ -253,7 +259,8 @@ if __name__ == "__main__":
     runWeek2()
     """
     # test.testCommonProteins()
-    test.testCombineProteins()
+    # test.testCombineProteins()
+    test.testAminoAcidDictionary()
 
     ## Uncomment these for Week 3 ##
     """

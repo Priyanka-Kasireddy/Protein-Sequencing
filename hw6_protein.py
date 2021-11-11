@@ -4,6 +4,7 @@ Name:
 Roll Number:
 """
 
+from os import X_OK
 import hw6_protein_tests as test
 
 project = "Protein" # don't edit this
@@ -261,7 +262,15 @@ Parameters: list of strs ; 2D list of strs
 Returns: list of floats
 '''
 def setupChartData(labels, proteinList):
-    return
+    m=combineProteins(proteinList)
+    n=aminoAcidDictionary(m)
+    x=[]
+    for i in labels:
+        if i in n:
+            x.append(n[i]/len(m))
+        else:
+            x.append(0)
+    return x
 
 
 '''
@@ -328,4 +337,5 @@ if __name__ == "__main__":
     print("\n" + "#"*15 + " WEEK 3 OUTPUT " + "#" * 15 + "\n")
     runFullProgram()
     """
-    test.testMakeAminoAcidLabels()
+    # test.testMakeAminoAcidLabels()
+    test.testSetupChartData()

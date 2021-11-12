@@ -283,10 +283,11 @@ def createChart(xLabels, freqList1, label1, freqList2, label2, edgeList=None):
     import matplotlib.pyplot as plt
     import numpy as np
     w=0.4
-    xvalues=np.arange(len(xLabels))
-    plt.bar(xvalues,freqList1,width=-w,align='edge',label=label1,edgecolor=edgeList)
-    plt.bar(xvalues,freqList2,width=w,align='edge',label=label2,edgecolor=edgeList)
-    plt.xticks(ticks=list(range(len(xLabels))),labels=xLabels,rotation="horizontal")
+    x=np.arange(len(xLabels))
+    y=np.arange(-w,len(xLabels)-1,1)
+    plt.bar(y,freqList1,width=-w,label=label1,edgecolor=edgeList)
+    plt.bar(x,freqList2,width=w,label=label2,edgecolor=edgeList)
+    plt.xticks(ticks=list(range(len(xLabels))),labels=xLabels,rotation="vertical")
     plt.legend()
     plt.title("Comparision of Frequencies")
     plt.show()
@@ -300,7 +301,16 @@ Parameters: list of strs ; 2D list of values
 Returns: list of strs
 '''
 def makeEdgeList(labels, biggestDiffs):
-    return
+    x=[]
+    y=[]
+    for i in range(len(biggestDiffs)):
+        y.append(biggestDiffs[i][0])
+    for i in range(len(labels)):
+        if labels[i] in y:
+            x.append("black")
+        else:
+            x.append("white")
+    return x
 
 
 '''
@@ -310,6 +320,16 @@ Parameters: no parameters
 Returns: None
 '''
 def runFullProgram():
+    human_proteins=synthesizeProteins("data/human_p53.txt","data/codon_table.json")
+    elephant_proteins=synthesizeProteins("data/elephant_p53.txt","data/codon_table.json")
+    pro=commonProteins(human_proteins,elephant_proteins)
+    diff=findAminoAcidDifferences(human_proteins,elephant_proteins,0.005)
+    displayTextResults(pro,diff)
+    labels=makeAminoAcidLabels(human_proteins,elephant_proteins)
+    f1=setupChartData(labels,human_proteins)
+    f2=setupChartData(labels,elephant_proteins)
+    edges=makeEdgeList(labels,diff)
+    createChart(labels, f1, "Human", f2, "Elephant", edgeList=edges)
     return
 
 
@@ -321,25 +341,25 @@ if __name__ == "__main__":
     # test.week1Tests()
     # print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
     # runWeek1()
-    # test.testReadFile()
-    # test.testDnaToRna()
-    # test.testMakeCodonDictionary()
-    # test.testGenerateProtein()
+    # # test.testReadFile()
+    # # test.testDnaToRna()
+    # # test.testMakeCodonDictionary()
+    # # test.testGenerateProtein()
     # test.testSynthesizeProteins()
 
-    ##Uncomment these for Week 2 ##
+    # ##Uncomment these for Week 2 ##
     
     # print("\n" + "#"*15 + " WEEK 2 TESTS " +  "#" * 16 + "\n")
     # test.week2Tests()
-    # # print("\n" + "#"*15 + " WEEK 2 OUTPUT " + "#" * 15 + "\n")
+    # print("\n" + "#"*15 + " WEEK 2 OUTPUT " + "#" * 15 + "\n")
     # runWeek2()
     
-    # test.testCommonProteins()
-    # test.testCombineProteins()
-    # test.testAminoAcidDictionary()
-    # test.testFindAminoAcidDifferences()
+    # # test.testCommonProteins()
+    # # test.testCombineProteins()
+    # # test.testAminoAcidDictionary()
+    # # test.testFindAminoAcidDifferences()
 
-    ## Uncomment these for Week 3 ##
+    # ## Uncomment these for Week 3 ##
     
     print("\n" + "#"*15 + " WEEK 3 TESTS " +  "#" * 16 + "\n")
     test.week3Tests()

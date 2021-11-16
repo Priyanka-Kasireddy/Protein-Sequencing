@@ -300,9 +300,9 @@ if __name__ == "__main__":
     ##Uncomment these for Week 2 ##
     
     # print("\n" + "#"*15 + " WEEK 2 TESTS " +  "#" * 16 + "\n")
-    test.week2Tests()
-    # print("\n" + "#"*15 + " WEEK 2 OUTPUT " + "#" * 15 + "\n")
-    runWeek2()
+    # test.week2Tests()
+    # # print("\n" + "#"*15 + " WEEK 2 OUTPUT " + "#" * 15 + "\n")
+    # runWeek2()
     
     # test.testCommonProteins()
     # test.testCombineProteins()

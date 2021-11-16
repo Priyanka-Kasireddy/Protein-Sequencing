@@ -212,7 +212,7 @@ def displayTextResults(commonalities, differences):
                 x+="-"
         if len(x)!=0:
             print(x)
-    print("The following amino acids occurred at very different rates in the two DNA sequences:")
+    print("The following amino acids occurred at very different rates in the two DNA sequences:" )
     for i in differences:
         m=i[0]
         f1=round(i[1]*100,2)
@@ -239,7 +239,19 @@ Parameters: 2D list of strs ; 2D list of strs
 Returns: list of strs
 '''
 def makeAminoAcidLabels(proteinList1, proteinList2):
-    return
+    l=[]
+    x=combineProteins(proteinList1)
+    y=combineProteins(proteinList2)
+    dict1=aminoAcidDictionary(x)
+    dict2=aminoAcidDictionary(y)
+    for i in dict1:
+        if i not in l:
+            l.append(i)
+    for j in dict2:
+        if j not in l:
+            l.append(j)
+    l.sort()
+    return l
 
 
 '''
@@ -316,3 +328,4 @@ if __name__ == "__main__":
     print("\n" + "#"*15 + " WEEK 3 OUTPUT " + "#" * 15 + "\n")
     runFullProgram()
     """
+    test.testMakeAminoAcidLabels()

@@ -356,4 +356,3 @@ if __name__ == "__main__":
     runFullProgram()
 
     # test.testMakeAminoAcidLabels()
-    # test.testSetupChartData()

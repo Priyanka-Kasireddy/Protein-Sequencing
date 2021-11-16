@@ -202,8 +202,6 @@ if __name__ == "__main__":
     # test.week1Tests()
     # print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
     # runWeek1()
-    # test.testReadFile()
-    test.testDnaToRna()
 
     ## Uncomment these for Week 2 ##
     """
